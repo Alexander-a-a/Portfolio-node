@@ -1,11 +1,336 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+    <head>
+        <title>Portfolio</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.css">
+        <link href="./lib/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/navbar.css" rel="stylesheet">
+        <link href="./css/header.css" rel="stylesheet">
+        <link href="./css/icons.css" rel="stylesheet">
+        <link href="./css/services.css" rel="stylesheet">
+        <link href="./css/carousel.css" rel="stylesheet">
+        <link href="./css/filters.css" rel="stylesheet">
+        <link href="./css/contact.css" rel="stylesheet">
+    </head>
+    <body class="position-relative" data-bs-spy="scroll">
+        <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light position-fixed w-100 fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#home">The cake master</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#recommendations">Recommendations</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#portfolio">Portfolio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+          </nav>
+          <div data-spy="scroll" data-target="#navbar" data-offset="0">
+            <header id="home">
+                <div class="container-fluid header-content">
+                  <div class="row">
+                    <div class="col">
+                      <div class="content-box text-center text-light">
+                        <h1>Welcome</h1>
+                        <h2>I am <span class="aboutMe"></span></h2>
+                        <p>Let me know if you want to taste the best cake in the world <i class="bi bi-emoji-smile-upside-down"></i></p>
+                        <a href="#" class="btn btn-primary">DOWNLOAD CV</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </header>
+            
+            <section class="about" id="about">
+              <div class="container">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <img src="img/mainPhoto.jpeg" class="img-fluid border-0 rounded-pill" alt="Profile Picture">
+                  </div>
+                  <div class="col-lg-6 mt-5 mt-lg-0">
+                    <h2>About Me</h2>
+                    <h3>Hello! <span style="color:#E96F85;">I am John Doe - the cake master</span></h4>
+          
+                    <p>I am baking the cakes with passion for five years. I have already baked numerous fancy cakes for weddings and birthdays. 
+                      Sometimes clients ask me to bake a cake for a special event, such as company anniversary as well!</p>
+                    <p>In the 2021 I participate in Cake International contest and got the Silver award badge. Although for me smile of satisfied client is way more important than any possible award.</p>
+                    <p>If you are interested in my work, you can check the greatest cakes I baked on my social media:</p>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-instagram"></i></a>
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="services">
+              <div class="container text-center">
+                <div class="row">
+                  <div class="col mb-5 ">
+                    <div class="col">
+                      <h2>My Services</h2>
+                      <p>I am baking cakes for every possible occasion. You can check the most popular ones below, but if you don't find the one you are looking for, please contact me to discuss it.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center">
+                  <div class="col-lg-6">
+                    <div class="card">
+                      <div class="wedding-img img-container"></div>
+                      <div class="card-body">
+                        <h5 class="card-title">Wedding cakes</h5>
+                        <p class="card-text">Are you planning the wedding. I can help you with celebration of this very important day with baking the greatest wedding cake, which will surely impress every single guest.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="card">
+                      <div class="birthday-img img-container"></div>
+                      <div class="card-body">
+                        <h5 class="card-title">Birthday cakes</h5>
+                        <p class="card-text">Does any important to you have birthday soon? Let's make this day special with one of special birthday cakes.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row text-center mt-4">
+                  <div class="col-lg-6">
+                    <div class="card">
+                      <div class="christmas-img img-container"></div>
+                      <div class="card-body">
+                        <h5 class="card-title">Christmas cakes</h5>
+                        <p class="card-text">Christmas preparation can be extremely exhausting. You can help yourself with ordering high-quality Christmas cake which will make everyone feel the spirit of Christmas.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="card">
+                      <div class="anniversary-img img-container"></div>
+                      <div class="card-body">
+                        <h5 class="card-title">Anniversary cake</h5>
+                        <p class="card-text">Celebrate your anniversary with style and the best quality anniversary cake. Make your partner feel special, as people say - the way to a human's heart is through the stomach. </p>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </section>
+            <section id="recommendations">
+              <div class="p-5 text-center">
+                <h2>Testimony</h2>
+                <p class="mb-5">What people say about us.</p>
+                  <div id="carouselExampleControls" class="container carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img class="rounded-circle shadow-1-strong mb-4"
+                        src="./img/avatar1.jpg" alt="avatar"
+                        style="width: 150px;" />
+                      <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                          <h5 class="mb-3">Maria Kate</h5>
+                          <p>Mom</p>
+                          <p class="text-muted">
+                            <i class="bi bi-quote pe-2"></i>
+                            I ordered a cake for my son's birthday. It was so delicious, that people asked me where I got such a cake. I will definitely order more cakes in the future!
+                          </p>
+                        </div>
+                      </div>
+                    </div>                    
+                    <div class="carousel-item">
+                      <img class="rounded-circle shadow-1-strong mb-4"
+                      src="./img/avatar2.jpg" alt="avatar"
+                      style="width: 150px;" />
+                      <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                          <h5 class="mb-3">Mark Stones</h5>
+                          <p>Husband</p>
+                          <p class="text-muted">
+                            <i class="bi bi-quote pe-2"></i>
+                            A month ago we had the wedding anniversary. I decided to order the cake from the cake master. I was more than satisfied. My wife said that she has never ate such a good cake. I can heavily recommend the cake master! 
+                          </p>
+                        </div>
+                      </div>
+                    </div>  
+                    <div class="carousel-item">
+                      <img class="rounded-circle shadow-1-strong mb-4"
+                      src="./img/avatar3.jpg" alt="avatar"
+                      style="width: 150px;" />
+                      <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                          <h5 class="mb-3">Barbara Smith</h5>
+                          <p>Teacher</p>
+                          <p class="text-muted">
+                            <i class="bi bi-quote pe-2"></i>
+                            Recently we were organizing the school party. As this event was special, we decided that served meals also need to be special. Because of that, we ordered cakes from the cake master. It was the first time I saw every student eating it without whining! There was no pieces left. I will definitely order cakes from the cake masters again in the future!
+                          </p>
+                        </div>
+                      </div>
+                    </div>                     
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                  data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+          <section id="portfolio">
+            <div class="container">
+              <div class="row">
+                <div class="col mb-5 text-center">
+                  <h2>Portfolio</h2>
+                  <p>The cakes I already baked for my clients.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 mx-auto mb-5">
+                  <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+                  <button class="btn" onclick="filterSelection('wedding')">Wedding cakes</button>
+                  <button class="btn" onclick="filterSelection('christmas')"> Christmas cakes</button>
+                  <button class="btn" onclick="filterSelection('birthday')"> Birthday cakes</button>
+                  <button class="btn" onclick="filterSelection('anniversary')"> Anniversary cakes</button>
+                </div>
+              </div>
+              <div class="row grid">
+                <div class="hide col-lg-4 col-md-6 col-sm-12 wedding">
+                  <div class="text-center">
+                    <img class="mb-3" src="./img/wedding_cake.jpg" alt="Wedding 1" style="width:100%">
+                    <h4>Wedding cake for Mark & Emily</h4>
+                    <p>Emily said she loves flowers, she loved the cake even more. </p>
+                  </div>
+                </div>
+                <div class="hide col-lg-4 col-md-6 col-sm-12 wedding">
+                  <div class="text-center">
+                  <img class="mb-3"  src="./img/wedding_cake2.jpg" alt="Wedding 2" style="width:100%">
+                    <h4>Wedding cake for John & Barbara</h4>
+                    <p>The newlyweds said they like minimalistic style.</p>
+                  </div>
+                </div>
+                <div class="hide col-lg-4 col-md-6 col-sm-12 wedding">
+                  <div class="text-center">
+                  <img class="mb-3" src="./img/wedding_cake3.jpg" alt="Wedding 3" style="width:100%">
+                    <h4>Wedding cake for Steven & Sarah</h4>
+                    <p>Steven and Sarah invited many guests, so they wanted to be sure that everyone can taste the wedding cake.</p>
+                  </div>
+                </div>
+                                
+                <div class="hide col-lg-4 col-md-6 col-sm-12 christmas">
+                  <div class="text-center">
+                    <img class="mb-3" src="./img/christmas_cake.jpeg" alt="Christmas" style="width:100%">
+                    <h4>Last Christmas</h4>
+                    <p>With this cake you can feel the spirit of the Christmas.</p>
+                  </div>
+                </div>
+                <div class="hide col-lg-4 col-md-6 col-sm-12 christmas">
+                  <div class="text-center">
+                    <img class="mb-3" src="./img/christmas_cake2.jpeg" alt="Christmas 2" style="width:100%">
+                    <h4>Classy Christmas</h4>
+                    <p>Spend your Christmas with style and taste this modern-looking cake!</p>
+                  </div>
+                </div>
+                <div class="hide col-lg-4 col-md-6 col-sm-12 birthday">
+                  <div class="text-center">
+                  <img class="mb-3" src="./img/birthday_cake.jpg" alt="Birthday 1" style="width:100%">
+                    <h4>Cream birthday cake</h4>
+                    <p>Make a wish before tasting this delicious cake!</p>
+                  </div>
+                </div>
+                <div class="hide col-lg-4 col-md-6 col-sm-12 birthday">
+                  <div class="text-center">
+                  <img class="mb-3" src="./img/birthday_cake2.jpg" alt="Birthday 2" style="width:100%">
+                    <h4>Raspberry birthday cake</h4>
+                    <p>Small Alexandra celebrated her third birthday with this delicious cake.</p>
+                  </div>
+                </div>
+                <div class="hide col-lg-4 col-md-6 col-sm-12 anniversary">
+                  <div class="text-center">
+                  <img class="mb-3" src="./img/anniversary_cake.jpeg" alt="Anniversary 1" style="width:100%">
+                    <h4>50th wedding anniversary</h4>
+                    <p>Harry and Margaret celebrated their 50th wedding anniversary with style.</p>
+                  </div>
+                </div>              
+                <div class="hide col-lg-4 col-md-6 col-sm-12 anniversary">
+                  <div class="text-center">
+                  <img class="mb-3" src="./img/anniversary_cake2.jpeg" alt="Anniversary 2" style="width:100%">
+                    <h4>Company's 50th anniversary</h4>
+                    <p>The big company celebrated its 50th anniversary with this classy cake!</p>
+                  </div>
+                </div>              
+              </div>
+        </section>
+            <section id="contact">
+              <div class="container text-center">
+                <div class="row">
+                  <div class="col">
+                    <h2>Contact Us</h2>
+                    <p>Feel free to contact me.</p>
+                  </div>
+                </div>
+                <div class="row mt-5">
+                  <div class="col-md-4">
+                    <div class="r-icon"> <i class="bi bi-telephone"></i></div>
+                    <div class="text-center">
+                      <h5>Call Us</h5>
+                      <p>1-123-456-789</p>
+                    </div>
+                  </div>
+          
+                  <div class="col-md-4">
+                    <div class="r-icon"> <i class="bi bi-envelope"></i></div>
+                    <div class="text-center">
+                      <h5>Email</h5>
+                      <p class="text-muted">johndoe@thecakemaster.com</p>          
+                    </div>
+                  </div>
+          
+                  <div class="col-md-4">
+                    <div class="r-icon"> <i class="bi bi-geo-alt"></i></div>
+                    <div class="text-center">
+                      <h5>Visit Us</h5>
+                      <p class="text-muted">1445 West Norwood Avenue in Itasca, Illinois</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-5">
+                  <div class="col">
+                    <div class="r-icon text-center mt-3">
+                      <ul>
+                        <li class="list-inline-item"><a href="#"><i class="bi bi-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="bi bi-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="bi bi-behance"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="bi bi-youtube"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </section>
+          </div>
+        <script src="./lib/js/jquery-3.6.0.js"></script>
+        <script src="./lib/js/bootstrap.bundle.min.js"></script>
+        <script src="./lib/js/typed.js"></script>
+        <script src="./js/app.js"></script>
+        <script src="./js/filters.js"></script>
+    </body>
 </html>
