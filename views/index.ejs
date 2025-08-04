@@ -1,39 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <title>Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link href="./css/navbar.css" rel="stylesheet">
-  <link href="./css/header.css" rel="stylesheet">
-  <link href="./css/icons.css" rel="stylesheet">
-  <link href="./css/services.css" rel="stylesheet">
-  <link href="./css/carousel.css" rel="stylesheet">
-  <link href="./css/filters.css" rel="stylesheet">
-  <link href="./css/contact.css" rel="stylesheet">
-</head>
+
 
 <body class="position-relative" data-bs-spy="scroll">
-  <%- include('partials/navbar.ejs') %>
-    <div data-spy="scroll" data-target="#navbar" data-offset="0">
-      <%- include('partials/home.ejs') %>
-        <%- include('partials/about.ejs') %>
-          <%- include('partials/services.ejs') %>
-            <%- include('partials/recommendations.ejs') %>
-              <%- include('partials/portfolio.ejs') %>
-                <%- include('partials/contact.ejs') %>
-    </div>
+  <%- include('partials/head.ejs') %>
+    <%- include('partials/navbar.ejs') %>
+      <div data-spy="scroll" data-target="#navbar" data-offset="0">
+        <%- include('partials/home.ejs') %>
+          <%- include('partials/about.ejs') %>
+            <%- include('partials/services.ejs') %>
+              <%- include('partials/recommendations.ejs') %>
+                <%- include('partials/portfolio.ejs') %>
+                  <%- include('partials/contact.ejs') %>
+                    <%- include('partials/scripts.ejs') %>
+      </div>
 
 
 
 
 
-    <script src="jquery.js"></script>
-    <script src="./lib/js/bootstrap.bundle.min.js"></script>
-    <script src="typed.js"></script>
-    <script src="./js/app.js"></script>
-    <script src="./js/filters.js"></script>
 </body>
 
 </html>
