@@ -8,9 +8,26 @@
   <%- include('partials/navbar.ejs') %>
 
   <div data-spy="scroll" data-target="#navbar" data-offset="0">
-    <!-- You can include your page-specific content here -->
+    
   </div>
 
-  <%- include('partials/scripts.ejs') %>
+ <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    
+
+    const strings = JSON.parse('<%- JSON.stringify(array) %>');
+   
+
+    var typed = new Typed(".aboutMe", {
+      strings: strings,
+      typeSpeed: 100,
+      backSpeed: 100,
+      smartBackspace: true,
+      loop: true
+    });
+  });
+</script>
+
+
 </body>
 </html>
