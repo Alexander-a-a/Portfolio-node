@@ -9,6 +9,14 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+var indexRouter = require('./routes/index');
+var homeRouter = require('./routes/home');
+var aboutRouter = require('./routes/about');
+var servicesRouter = require('./routes/services');
+var recommendationsRouter = require('./routes/recommendations');
+var portfolioRouter = require('./routes/portfolio');
+var contactRouter = require('./routes/contact');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -20,12 +28,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
+app.use('/icons', express.static(path.join(__dirname, 'node_modules/bootstrap-icons/font')));
 app.use(express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use(express.static(__dirname + '/node_modules/typed.js/lib'));
 
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+
+app.use('/', indexRouter);
+app.use('/home', homeRouter);
+app.use('/about', aboutRouter);
+app.use('/services', servicesRouter);
+app.use('/recommendations', recommendationsRouter);
+app.use('/portfolio', portfolioRouter);
+app.use('/contact', contactRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
