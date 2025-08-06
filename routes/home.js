@@ -31,28 +31,26 @@ router.post("/", jsonParser, function (req, res, next) {
 });
 
 
-let updatedArray
+
 // Post delete request
-router.post("/delete", jsonParser, function (req, res, next) {
-  let rawdata = fs.readFileSync(
+router.delete("/", jsonParser, function (req, res, next) {
+  const rawdata = fs.readFileSync(
     path.resolve(__dirname, "../data/introductionArray.json")
   );
-  let array = JSON.parse(rawdata);
-  const deleteArr = array;
-  if(deleteArr.includes(req.body.deleteText)) {
-     updatedArray = deleteArr.filter(item => item !== req.body.deleteText);
-     fs.writeFileSync(
+  const array = JSON.parse(rawdata);
+  const updatedArray = array.filter(item => item !== req.body.deleteText);
+
+  if (updatedArray.length !== array.length) {
+    fs.writeFileSync(
       path.resolve(__dirname, "../data/introductionArray.json"),
-      JSON.stringify(updatedArray, null, 2));
+      JSON.stringify(updatedArray, null, 2)
+    );
+    res.status(200).json({ message: "Deleted successfully." });
   } else {
     console.log("Value not found!");
-    updatedArray = array;
+    res.status(404).json({ message: "Value not found." });
   }
-
-    
-
-   res.redirect("/home");
-})
+});
 
 
 module.exports = router;

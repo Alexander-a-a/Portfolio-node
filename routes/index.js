@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   res.render('index', {
     title: 'Express',
     array: JSON.parse(introData),
-    data: JSON.parse(recommendationsData) // ⬅ this is the fix
+    data: JSON.parse(recommendationsData) 
   });
 });
 
