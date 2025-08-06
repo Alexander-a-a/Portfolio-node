@@ -5,8 +5,14 @@ const path = require("path")
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-   let data = fs.readFileSync(path.resolve(__dirname, "../data/introductionArray.json"));
-    res.render('index', { title: 'Express' , array: JSON.parse(data)});
+  let introData = fs.readFileSync(path.resolve(__dirname, "../data/introductionArray.json"));
+  let recommendationsData = fs.readFileSync(path.resolve(__dirname, "../data/recommendations.json"));
+  
+  res.render('index', {
+    title: 'Express',
+    array: JSON.parse(introData),
+    data: JSON.parse(recommendationsData) // ⬅ this is the fix
+  });
 });
 
 module.exports = router;
