@@ -32,20 +32,16 @@
          <%- include('./partials/home.ejs') %> 
     </div>
 
+<%- include('./partials/scripts.ejs') %>
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    console.log("Typed.js script is running");
-
-    const strings = JSON.parse('<%- JSON.stringify(array) %>');
-    console.log("Using strings:", strings);
-
-    var typed = new Typed(".aboutMe", {
-      strings: strings,
-      typeSpeed: 100,
-      backSpeed: 100,
-      smartBackspace: true,
-      loop: true
-    });
+  var typed = new Typed(".aboutMe", {
+    strings: JSON.parse('<%- JSON.stringify(array) %>'),
+    smartBackspace: true,
+    typeSpeed: 100,
+    backSpeed: 100,
+    loop: true,
+    loopCount: Infinity,
+    startDelay: 1000
   });
 </script>
 
