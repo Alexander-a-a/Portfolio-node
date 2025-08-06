@@ -27,10 +27,32 @@ router.post("/", jsonParser, function (req, res, next) {
     path.resolve(__dirname, "../data/introductionArray.json"),
     JSON.stringify(newArray, null, 2) 
   );
-  res.end();
+  res.redirect("/home");
 });
 
 
+let updatedArray
+// Post delete request
+router.post("/delete", jsonParser, function (req, res, next) {
+  let rawdata = fs.readFileSync(
+    path.resolve(__dirname, "../data/introductionArray.json")
+  );
+  let array = JSON.parse(rawdata);
+  const deleteArr = array;
+  if(deleteArr.includes(req.body.deleteText)) {
+     updatedArray = deleteArr.filter(item => item !== req.body.deleteText);
+     fs.writeFileSync(
+      path.resolve(__dirname, "../data/introductionArray.json"),
+      JSON.stringify(updatedArray, null, 2));
+  } else {
+    console.log("Value not found!");
+    updatedArray = array;
+  }
+
+    
+
+   res.redirect("/home");
+})
 
 
 module.exports = router;
