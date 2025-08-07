@@ -9,7 +9,7 @@
 <body class="position-relative" data-bs-spy="scroll">
     <%- include('./partials/navbar.ejs') %>
         <div data-spy="scroll" data-target="#navbar" data-offset="0">
-            <%- include('partials/portfolio.ejs') %>
+            <%- include('./partials/portfolio.ejs', {cakes: cakes}) %>
         </div>
         <%- include('./partials/scripts.ejs') %>
 </body>
