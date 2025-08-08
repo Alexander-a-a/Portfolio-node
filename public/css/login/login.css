@@ -56,7 +56,7 @@ h3 {
     color: #b83f45;
 }
 
-form section {
+form .row {
     margin: 0 0 20px 0;
     position: relative; /* for password toggle positioning */
 }

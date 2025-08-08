@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var passport = require('passport')
+var session = require('express-session');
+var JsonStore = require('express-session-json')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,6 +19,7 @@ var servicesRouter = require('./routes/services');
 var recommendationsRouter = require('./routes/recommendations');
 var portfolioRouter = require('./routes/portfolio');
 var contactRouter = require('./routes/contact');
+var loginRouter = require('./routes/login');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,9 +35,20 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist
 app.use('/icons', express.static(path.join(__dirname, 'node_modules/bootstrap-icons/font')));
 app.use(express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use(express.static(__dirname + '/node_modules/typed.js/lib'));
+app.use(express.static(__dirname + '/node_modules/bootstrap-icons'));
 
 
-app.use('/', indexRouter);
+// Sessions
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  store: new JsonStore()
+}));
+app.use(passport.authenticate('session'));
+
+
+
 app.use('/users', usersRouter);
 
 
@@ -44,6 +59,9 @@ app.use('/services', servicesRouter);
 app.use('/recommendations', recommendationsRouter);
 app.use('/portfolio', portfolioRouter);
 app.use('/contact', contactRouter);
+app.use('/login', loginRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
