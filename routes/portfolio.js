@@ -4,7 +4,7 @@ var fs = require("fs");
 const path = require("path");
 var request = require('request');
 
-/* GET home page. */
+// GET home page. 
 router.get('/', function(req, res, next) {
   let data = fs.readFileSync(path.resolve(__dirname, "../data/portfolio.json"));
   res.render('portfolio', { cakes: JSON.parse(data)});
@@ -35,6 +35,27 @@ var download = function(url, filename, callback){
     request(url).pipe(fs.createWriteStream(path.resolve(__dirname, '../data/img/'+ filename))).on('close', callback);
   });
 };
+
+// Delete image
+
+router.delete('/', jsonParser, function(req, res, next) {
+  let rawdata = fs.readFileSync(path.resolve(__dirname, "../data/portfolio.json"));
+  let portfoliosArray = JSON.parse(rawdata);
+  const newArray = portfoliosArray.filter(x => x.name !== req.body.name)
+  if(newArray.length !== portfoliosArray.length) {
+    fs.unlink(path.resolve(__dirname, '../data/img/'+ req.body.name), () => {
+      console.log(req.body.name + " deleted!");
+    });
+    fs.writeFileSync(path.resolve(__dirname, "../data/portfolio.json"), JSON.stringify(newArray));
+  }
+  res.end();
+});
+
+
+
+
+
+
 
 
 module.exports = router;
