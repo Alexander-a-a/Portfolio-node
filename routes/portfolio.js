@@ -1,61 +1,150 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 var fs = require("fs");
 const path = require("path");
-var request = require('request');
+var request = require("request");
 
-// GET home page. 
-router.get('/', function(req, res, next) {
+// GET home page.
+router.get("/", function (req, res, next) {
   let data = fs.readFileSync(path.resolve(__dirname, "../data/portfolio.json"));
-  res.render('portfolio', { cakes: JSON.parse(data)});
+  res.render("portfolio", { cakes: JSON.parse(data) });
 });
-
-
 
 var bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
 
 // Post image req
-router.post('/', jsonParser, function(req, res, next) {
-  let rawdata = fs.readFileSync(path.resolve(__dirname, "../data/portfolio.json"));
-  let portfoliosArray = JSON.parse(rawdata);
-  if(portfoliosArray.filter(x => x.name === req.body.name).length == 0) {
-    download(req.body.url, req.body.name, function(){
-      console.log('done');
-    });
-    const newArray = portfoliosArray.concat([req.body])
-    fs.writeFileSync(path.resolve(__dirname, "../data/portfolio.json"), JSON.stringify(newArray));
+router.post("/", jsonParser, function (req, res, next) {
+  const errorArr = [];
+  const specialChar = /[!@#$%^&*()_\-=\[\]{};':"\\|,<>\/?]+/;
+  const allowedCategories = ["wedding", "christmas", "birthday", "anniversary"];
+
+  // URL
+  const checkUrl = typeof req.body.url === "string" ? req.body.url.trim() : req.body.url;
+  if (checkUrl === null || checkUrl === undefined) {
+    errorArr.push("URL is required");
   }
-  res.end();
+  if (typeof checkUrl !== "string") {
+    errorArr.push("URL must be a string");
+  } else {
+    if (!checkUrl.startsWith("http://") && !checkUrl.startsWith("https://")) {
+      errorArr.push(" URL must be http:// or https://");
+    }
+  }
+
+  // Name
+  const checkName = typeof req.body.name === "string" ? req.body.name.trim() : req.body.name;
+  if (checkName === null || checkName === undefined || checkName === "") {
+    errorArr.push("name is required!");
+  }
+   if (typeof checkName !== "string") {
+    errorArr.push("name must be a string");
+  } else {
+    if (checkName.length > 12) {
+      errorArr.push("name must be less than 12 characters");
+    }
+
+  if (checkName.match(specialChar)) {
+    errorArr.push("name can't contain special characters");
+  }
+}
+
+  // Alt
+  const checkAlt = typeof req.body.alt === "string" ? req.body.alt.trim() : req.body.alt;
+  if (checkAlt === null || checkAlt === undefined || checkAlt === "") {
+    errorArr.push("alt is required");
+  }
+  if (typeof checkAlt !== "string") {
+    errorArr.push("alt must be a string");
+  }
+
+  // Category
+  const checkCategory = typeof req.body.category === "string" ? req.body.category.trim() : req.body.category;
+  if (checkCategory === null || checkCategory === undefined || checkCategory === "") {
+    errorArr.push("category is required");
+  }
+
+   if (typeof checkCategory !== "string") {
+    errorArr.push("category must be a string");
+  } else if (!allowedCategories.includes(checkCategory)) {
+    errorArr.push("category must be one of: " + allowedCategories.join(", "));
+  }
+
+  // Header
+  const checkHeader = typeof req.body.header === "string" ? req.body.header.trim() : req.body.header;
+  if (checkHeader === null || checkHeader === undefined || checkHeader === "") {
+    errorArr.push("header is required");
+  }
+    if (typeof checkHeader !== "string") {
+    errorArr.push("header must be a string");
+  } else if (checkHeader.length > 12) {
+    errorArr.push("header must be less than 12 characters");
+  }
+
+  // Description
+  const checkDescription = typeof req.body.description === "string" ? req.body.description.trim() : req.body.description;
+  if (checkDescription === null || checkDescription === undefined || checkDescription === "") {
+    errorArr.push("must have description");
+  }
+  if (typeof checkDescription !== "string") {
+    errorArr.push("description must be a string");
+  } else if (checkDescription.length > 25) {
+    errorArr.push("description must be less than 25 characters");
+  }
+
+  // Return validation errors
+  if (errorArr.length > 0) {
+    return res.status(400).json({ errors: errorArr });
+  }
+
+  // Save data if valid
+  let rawdata = fs.readFileSync(
+    path.resolve(__dirname, "../data/portfolio.json")
+  );
+  let portfoliosArray = JSON.parse(rawdata);
+  if (portfoliosArray.filter((x) => x.name === req.body.name).length == 0) {
+    download(req.body.url, req.body.name, function () {
+      console.log("done");
+    });
+    const newArray = portfoliosArray.concat([req.body]);
+    fs.writeFileSync(
+      path.resolve(__dirname, "../data/portfolio.json"),
+      JSON.stringify(newArray)
+    );
+  }
+  return res.status(201).json({ message: "Portfolio item added" });
 });
 
+
 //download image to the server:
-var download = function(url, filename, callback){
-  request.head(url, function(err, res, body){
-    request(url).pipe(fs.createWriteStream(path.resolve(__dirname, '../data/img/'+ filename))).on('close', callback);
+var download = function (url, filename, callback) {
+  request.head(url, function (err, res, body) {
+    request(url)
+      .pipe(
+        fs.createWriteStream(path.resolve(__dirname, "../data/img/" + filename))
+      )
+      .on("close", callback);
   });
 };
 
 // Delete image
 
-router.delete('/', jsonParser, function(req, res, next) {
-  let rawdata = fs.readFileSync(path.resolve(__dirname, "../data/portfolio.json"));
+router.delete("/", jsonParser, function (req, res, next) {
+  let rawdata = fs.readFileSync(
+    path.resolve(__dirname, "../data/portfolio.json")
+  );
   let portfoliosArray = JSON.parse(rawdata);
-  const newArray = portfoliosArray.filter(x => x.name !== req.body.name)
-  if(newArray.length !== portfoliosArray.length) {
-    fs.unlink(path.resolve(__dirname, '../data/img/'+ req.body.name), () => {
+  const newArray = portfoliosArray.filter((x) => x.name !== req.body.name);
+  if (newArray.length !== portfoliosArray.length) {
+    fs.unlink(path.resolve(__dirname, "../data/img/" + req.body.name), () => {
       console.log(req.body.name + " deleted!");
     });
-    fs.writeFileSync(path.resolve(__dirname, "../data/portfolio.json"), JSON.stringify(newArray));
+    fs.writeFileSync(
+      path.resolve(__dirname, "../data/portfolio.json"),
+      JSON.stringify(newArray)
+    );
   }
   res.end();
 });
-
-
-
-
-
-
-
 
 module.exports = router;
