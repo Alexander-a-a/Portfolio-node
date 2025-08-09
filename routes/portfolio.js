@@ -130,24 +130,37 @@ var download = function (url, filename, callback) {
   });
 };
 
-// Delete image
 
-router.delete("/", jsonParser, function (req, res, next) {
-  let rawdata = fs.readFileSync(
-    path.resolve(__dirname, "../data/portfolio.json")
-  );
-  let portfoliosArray = JSON.parse(rawdata);
-  const newArray = portfoliosArray.filter((x) => x.name !== req.body.name);
-  if (newArray.length !== portfoliosArray.length) {
-    fs.unlink(path.resolve(__dirname, "../data/img/" + req.body.name), () => {
-      console.log(req.body.name + " deleted!");
+// Delete image only for logged in users
+router.delete('/', jsonParser, ensureLoggedIn, (req, res, next) => {
+  try {
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ error: 'Missing "name" in body' });
+    }
+
+    const dataPath = path.resolve(__dirname, '../data/portfolio.json');
+    const imgPath = path.resolve(__dirname, `../data/img/${name}`);
+
+    const portfoliosArray = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+    const newArray = portfoliosArray.filter(x => x.name !== name);
+
+    // If nothing was removed, return 404 (not found)
+    if (newArray.length === portfoliosArray.length) {
+      return res.status(404).json({ error: 'Image not found in portfolio.json' });
+    }
+
+    // Remove image file (ignore error if file missing)
+    fs.unlink(imgPath, () => {
+      console.log(`${name} deleted (image + entry).`);
     });
-    fs.writeFileSync(
-      path.resolve(__dirname, "../data/portfolio.json"),
-      JSON.stringify(newArray)
-    );
+
+    // Save updated JSON
+    fs.writeFileSync(dataPath, JSON.stringify(newArray, null, 2));
+    return res.status(200).json({ ok: true });
+  } catch (err) {
+    return next(err);
   }
-  res.end();
 });
 
 module.exports = router;

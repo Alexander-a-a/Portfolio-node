@@ -1,36 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <%- include('partials/head.ejs') %>
+  <meta charset="UTF-8" />
+  <title>Cakes</title>
+  <%- include('./partials/head.ejs') %>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/font/bootstrap-icons.css">
 </head>
 
-<body class="position-relative" data-bs-spy="scroll">
-  <%- include('partials/navbar.ejs') %>
-
-  <div data-spy="scroll" data-target="#navbar" data-offset="0">
-  <h1 style="margin-top:6rem">HOME WORKS</h1>
-    
-    
-  </div>
-
- <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    
-
-    const strings = JSON.parse('<%- JSON.stringify(array) %>');
-   
-
-    var typed = new Typed(".aboutMe", {
-      strings: strings,
-      typeSpeed: 100,
-      backSpeed: 100,
-      smartBackspace: true,
-      loop: true
-    });
-  });
-</script>
-<script src="/js/portfolioRequest.js"></script>
+<body id="top" data-bs-spy="scroll" data-bs-target="#mainNav">
 
 
+  <%- include('./partials/navbar.ejs') %>
+
+
+    <%- include('./home.ejs', { array }) %>
+
+      <section id="recommendations" class="py-5">
+        <div class="container">
+          <%- include('./partials/recommendations.ejs', { data }) %>
+        </div>
+      </section>
+      <!-- Portfolio -->
+      <section id="portfolio" class="py-5">
+        <div class="container">
+          <%- include('./partials/portfolio.ejs', { cakes }) %>
+        </div>
+      </section>
+
+
+      <%- include('./partials/contact.ejs') %>
+
+
+
+        <script src="/js/bootstrap.bundle.min.js"></script>
+        <script src="/typed.min.js"></script>
+        <script src="/js/filters.js"></script>
+        
+        <script src="/js/portfolioRequest.js"></script>
+
+
+        <script>
+          // Example: Typed.js using `array` from server
+          if (Array.isArray(<%- JSON.stringify(array || []) %>)) {
+            new Typed(".aboutMe", {
+              strings: <%- JSON.stringify(array) %>,
+              typeSpeed: 100,
+              backSpeed: 100,
+              smartBackspace: true,
+              loop: true
+            });
+          }
+        </script>
+        
 </body>
+
 </html>
