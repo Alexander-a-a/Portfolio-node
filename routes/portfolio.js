@@ -10,7 +10,10 @@ var ensureLoggedIn = ensureLogIn();
 // GET home page.
 router.get("/", function (req, res, next) {
   let data = fs.readFileSync(path.resolve(__dirname, "../data/portfolio.json"));
-  res.render("portfolio", { cakes: JSON.parse(data) });
+  res.render("portfolio", {
+    cakes: JSON.parse(data),
+    isAuthenticated: req.isAuthenticated()
+  });
 });
 
 var bodyParser = require("body-parser");
