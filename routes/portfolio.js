@@ -4,6 +4,9 @@ var fs = require("fs");
 const path = require("path");
 var request = require("request");
 
+var ensureLogIn = require('connect-ensure-login').ensureLoggedIn;
+var ensureLoggedIn = ensureLogIn();
+
 // GET home page.
 router.get("/", function (req, res, next) {
   let data = fs.readFileSync(path.resolve(__dirname, "../data/portfolio.json"));
