@@ -39,7 +39,7 @@ includes a Google Maps Embed in the contact section (and on the main page).
 
 - Run the image server
 
-node bin/imagesServer
+  node bin/imagesServer
 
 # serves images at: http://localhost:8080/images/<filename>
 
