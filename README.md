@@ -25,7 +25,7 @@ npm install
 
 - Create your env file from the example
 
-cp .env.example .env
+- cp .env.example .env
 
 - then open .env and set:
 
