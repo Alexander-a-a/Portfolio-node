@@ -27,13 +27,13 @@ npm install
 
 - cp .env.example .env
 
-- then open .env and set:
+  then open .env and set:
 
 - GOOGLE_MAPS_API_KEY=your_restricted_key_here
 
 - Run
 
-npm start
+  npm start
 
 # App: http://localhost:3000
 
