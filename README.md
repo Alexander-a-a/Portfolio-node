@@ -21,7 +21,7 @@ includes a Google Maps Embed in the contact section (and on the main page).
 
 - Install dependencies
 
-npm install
+  npm install
 
 - Create your env file from the example
 
