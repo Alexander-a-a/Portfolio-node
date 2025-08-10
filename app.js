@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,7 +8,8 @@ var passport = require('passport')
 var session = require('express-session');
 var JsonStore = require('express-session-json')(session);
 
-var indexRouter = require('./routes/index');
+
+
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -36,6 +38,7 @@ app.use('/icons', express.static(path.join(__dirname, 'node_modules/bootstrap-ic
 app.use(express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use(express.static(__dirname + '/node_modules/typed.js/lib'));
 app.use(express.static(__dirname + '/node_modules/bootstrap-icons'));
+app.locals.gmapsKey = process.env.GOOGLE_MAPS_API_KEY;
 
 
 // Sessions

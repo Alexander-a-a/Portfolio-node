@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# env / secrets
+.env
+
+# logs & junk
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# OS/editor
+.DS_Store
+.vscode/
+
+# coverage/build
+coverage/
+dist/
+build/
